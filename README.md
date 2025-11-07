@@ -1,13 +1,5 @@
 #  <div align="center" style="background: linear-gradient(270deg, #ff0080, #ff8c00, #40e0d0, #8a2be2); background-size: 800% 800%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 10s ease infinite;">Caml Language 🐪</div>
 
-<style>
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-</style>
-
 ## 🎯 Mission
 
 > To develop a programming language that makes learning coding and understanding it easier and simplified.  
