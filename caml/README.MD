@@ -1,5 +1,4 @@
-#  <div align="center" style="background: linear-gradient(270deg, #ff0080, #ff8c00, #40e0d0, #8a2be2); background-size: 800% 800%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 10s ease infinite;">Caml Language 🐪</div>
-
+# Caml Language 🐪
 <style>
 @keyframes gradientMove {
   0% { background-position: 0% 50%; }
