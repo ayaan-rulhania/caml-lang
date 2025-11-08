@@ -1,9 +1,0 @@
-Display "Hello, Caml!" plus bold
-Assign 5 to x
-Increase x by 10
-Display x
-Create list mylist containing contents 1, 2, 3
-display mylist
-Add 4 to list mylist
-For each item in mylist do:
-    Display item

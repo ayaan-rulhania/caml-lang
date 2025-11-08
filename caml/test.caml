@@ -1,0 +1,10 @@
+Display "Hello, Caml!" plus bold
+Assign 5 to x
+Increase x by 10
+Display x
+
+$
+Output should be:
+**Hello, Caml!**
+15
+$
