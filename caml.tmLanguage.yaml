@@ -1,0 +1,173 @@
+---
+name: Caml
+scopeName: source.caml
+fileTypes:
+  - caml
+uuid: 3bce97e4-f4e5-40a2-ab04-0962841c0b65
+
+patterns:
+  - include: '#comments'
+  - include: '#strings'
+  - include: '#keywords'
+  - include: '#operators'
+  - include: '#datatypes'
+  - include: '#variables'
+  - include: '#display'
+  - include: '#flowcontrol'
+  - include: '#functions'
+  - include: '#math'
+  - include: '#filehandling'
+  - include: '#modules'
+  - include: '#collections'
+  - include: '#objects'
+  - include: '#gui'
+  - include: '#ignore'
+
+repository:
+  # --- 1. Comments (Block and Line) ---
+  comments:
+    patterns:
+      # Mass Comment: $$$ {content} $$$
+      - name: comment.block.caml
+        begin: (\$\$\$)
+        beginCaptures:
+          '1': {name: punctuation.definition.comment.begin.caml}
+        end: (\$\$\$)
+        endCaptures:
+          '1': {name: punctuation.definition.comment.end.caml}
+        patterns:
+          - include: '#ignore'
+      # Normal/Same-line Comment: $ {content}
+      - name: comment.line.caml
+        match: \$[ \t]*.*$
+        captures:
+          '0': {name: punctuation.definition.comment.caml}
+
+  # --- 2. String/Literals ---
+  strings:
+    patterns:
+      # Double-quoted string
+      - name: string.quoted.double.caml
+        begin: '"'
+        end: '"'
+        patterns:
+          - include: '#string-escape'
+      # Single-quoted string
+      - name: string.quoted.single.caml
+        begin: "'"
+        end: "'"
+        patterns:
+          - include: '#string-escape'
+      # Numbers (integers, floats)
+      - name: constant.numeric.caml
+        match: \b\d+(\.\d+)?(e[+-]?\d+)?(bigint)?\b
+
+  # --- 3. Ignore (Common Rules: the, a, an, .) ---
+  ignore:
+    patterns:
+      - name: keyword.ignored.caml
+        match: \b(the|a|an)\b|\.
+
+  # --- 4. Keywords (Control, Boolean, Data Types, etc.) ---
+  keywords:
+    patterns:
+      - name: keyword.control.caml
+        match: \b(and|or|except|If|Or if|Otherwise|Repeat this|Do this until|For each|do|Block|return|which does|which takes|Call|Abbreviate|to)\b
+      - name: constant.language.boolean.caml
+        match: \b(true|false)\b
+
+  # --- 5. Data Types ---
+  datatypes:
+    patterns:
+      - name: support.type.caml
+        # Matches the long names and short aliases (case-insensitive due to the Caml rule)
+        match: \b(string|str|integer|int|float|null|undefined|boolean|list|dictionary|bigint|image)\b
+      - name: support.type.class.caml # For Object/Class creation
+        match: \b(object|Block|characteristic|function)\b
+
+  # --- 6. Operators ---
+  operators:
+    patterns:
+      - name: keyword.operator.comparison.caml
+        match: \b(!?==|is equal to|is greater than|is less than)\b
+      - name: keyword.operator.math.caml
+        match: [\+\-\*/]|\b(Increase|Decrease|Multiply|Divide|Exponentiate|by|plus|minus|of|Square|Squareroot|gcd|lcm)\b
+      - name: keyword.operator.estimate.caml
+        match: \b(~==|~)\b
+
+  # --- 7. Variables (Assignment/Modification) ---
+  variables:
+    patterns:
+      - name: keyword.operator.assignment.caml
+        # Assign ... to ..., Set ... to ..., Change ... to ...
+        match: \b(Assign|Set|Change)\b
+
+  # --- 8. Display/Interact ---
+  display:
+    patterns:
+      - name: support.function.output.caml
+        match: \b(display|interact)\b
+
+  # --- 9. Flow Control (Conditionals/Loops) ---
+  flowcontrol:
+    patterns:
+      - name: keyword.control.conditional.caml
+        match: \b(If|Or if|Otherwise)\b
+      - name: keyword.control.loop.caml
+        match: \b(Repeat this|Do this until|For each)\b
+
+  # --- 10. Functions ---
+  functions:
+    patterns:
+      - name: storage.type.function.caml
+        match: \b(Define function|Call function|Abbreviate function|return)\b
+
+  # --- 11. Math (Excluding basic operators) ---
+  math:
+    patterns:
+      - name: support.function.math.caml
+        match: \b(Generate random int|Square of|Squareroot of|gcd|lcm)\b
+
+  # --- 12. File Handling ---
+  filehandling:
+    patterns:
+      - name: support.function.file.caml
+        match: \b(Create new file|Delete file|Write|Find|Replace with|Rename file|Access file)\b
+
+  # --- 13. Modules ---
+  modules:
+    patterns:
+      - name: keyword.control.import.caml
+        match: \b(Import|from|Exports are)\b
+
+  # --- 14. Collections (Lists/Dictionaries) ---
+  collections:
+    patterns:
+      - name: support.function.collection.caml
+        match: \b(Create list|Create dictionary|Add|Remove|Get|containing|item|in list|in dictionary)\b
+
+  # --- 15. Objects ---
+  objects:
+    patterns:
+      - name: storage.type.class.caml
+        match: \b(Create new object called|Set.*'s|Delete|Block)\b
+
+  # --- 16. GUI ---
+  gui:
+    patterns:
+      - name: entity.name.type.gui.caml
+        match: \b(Window|Button|title|background color|fontface|text|color|border color|text color|align)\b
+      - name: storage.type.gui.caml
+        match: \b(Create window called|Create a new button called|Display text)\b
+
+  # --- 17. Getters ---
+  getters:
+    patterns:
+      - name: support.function.getters.caml
+        match: \b(Get length of|Get case of|Get data type of)\b
+
+  # --- 18. Graphics (Drawing) ---
+  graphics:
+    patterns:
+      - name: support.function.graphics.caml
+        match: \b(Draw a line|Draw an angle|Graph the coordinates|Draw a (square|circle|triangle|pentagon|hexagon|octagon))\b
